@@ -18,14 +18,14 @@ export class LoginComponent implements OnInit {
         // console.log("OnInit: ", this.email, this.password)
     }
 
-
-
     handleLogin(): void {
         this.authService.login(this.email, this.password).subscribe({
             next: data => {
+                localStorage.removeItem("access-token");
                 localStorage.setItem("access-token", data.access_token);
-                this.router.navigate(['/home'])
+                this.router.navigate(['/blogs'])
                 // console.log("access-token", data.access_token)
+
             },
             error: err => console.log("Error :", err)
         })

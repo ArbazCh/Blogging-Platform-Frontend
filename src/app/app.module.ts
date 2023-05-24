@@ -9,7 +9,9 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
+import { BlogsComponent } from './components/blogs/blogs.component';
+import { BlogPageComponent } from './components/blogPage/blog-page.component';
+import { routes } from './routes/route';
 
 @NgModule({
   declarations: [
@@ -17,18 +19,15 @@ import { HomeComponent } from './components/home/home.component';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    BlogsComponent,
+    BlogPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'home', component: HomeComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

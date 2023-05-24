@@ -1,0 +1,10 @@
+<h3>{{title}}</h3>
+<div *ngFor="let blog of blogs" onclick="navigateToBlog()">
+    <a routerLink="/blog/{{blog.id}}">
+        <h4>{{blog.title}}</h4>
+    </a>
+    <p>{{blog.createdAt}}</p>
+    <p>{{blog.description}}</p>
+    <p>{{blog.body}}</p>
+</div>
+<router-outlet></router-outlet>

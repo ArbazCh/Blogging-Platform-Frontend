@@ -1,11 +1,7 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
-
-const apiUrl: string = 'http://localhost:5000/'
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { apiUrl, httpOptions } from "src/app/helper/helper";
 
 @Injectable({
     providedIn: 'root'
