@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, retry } from "rxjs";
 import { apiUrl, httpOptions } from "src/app/helper/helper";
 
 
@@ -13,6 +13,13 @@ export class BlogService {
 
     getAllBlogs(): Observable<any> {
         return this.http.get(apiUrl + 'blog', httpOptions)
+    }
+    getBlogBYId(id: number): Observable<any> {
+        return this.http.get(apiUrl + `blog/${id}`, httpOptions)
+    }
+
+    createBlog(body: any): Observable<any> {
+        return this.http.post(apiUrl + 'blog/create', body, httpOptions)
     }
 
 }

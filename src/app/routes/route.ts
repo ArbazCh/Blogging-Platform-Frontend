@@ -3,10 +3,12 @@ import { LoginComponent } from "../components/login/login.component";
 import { RegisterComponent } from "../components/register/register.component";
 import { BlogsComponent } from "../components/blogs/blogs.component";
 import { BlogPageComponent } from "../components/blogPage/blog-page.component";
+import { CreateBlogComponent } from "../components/create-blog/create-blog.component";
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'blogs', component: BlogsComponent },
-    { path: 'blog/:id', component: BlogPageComponent }
+    { path: 'blog/:id', component: BlogPageComponent },
+    { path: 'create', component: CreateBlogComponent }
 ]

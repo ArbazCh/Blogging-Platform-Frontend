@@ -23,9 +23,9 @@ export class BlogsComponent implements OnInit {
         })
     }
 
-    navigateToBlog(): void {
-        this.router.navigate(['/login'])
-    }
+    // navigateToBlog(): void {
+    //     this.router.navigate(['login'])
+    // }
 
 
     // reloadPage(): void {

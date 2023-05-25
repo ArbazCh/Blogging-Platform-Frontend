@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogPageComponent } from './components/blogPage/blog-page.component';
 import { routes } from './routes/route';
+import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { routes } from './routes/route';
     LoginComponent,
     RegisterComponent,
     BlogsComponent,
-    BlogPageComponent
+    BlogPageComponent,
+    CreateBlogComponent
   ],
   imports: [
     BrowserModule,
