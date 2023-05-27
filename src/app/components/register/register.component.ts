@@ -3,14 +3,15 @@ import { AuthService } from "src/app/services/auth.service";
 
 @Component({
     selector: 'pm-register',
-    templateUrl: './register.component.html'
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 
 })
 export class RegisterComponent {
     constructor(private authService: AuthService) { }
 
 
-    title: string = "Register Page";
+    title: string = "Register Yourself";
     name: string = 'xyz';
     email: string = 'xyz@gmail.com';
     password: string = 'Password@123';

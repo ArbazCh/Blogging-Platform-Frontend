@@ -1,6 +1,13 @@
-<h3>Create Blog Page</h3>
+<div class="container">
+    <h3>Create Your Blog</h3>
 
-<input [(ngModel)]="body.title" placeholder="title"> <br>
-<input [(ngModel)]="body.description" placeholder="description"> <br>
-<input [(ngModel)]="body.body" placeholder="body"> <br>
-<button (click)="handlePublish()">Publish</button>
+    <input [(ngModel)]="body.title" placeholder="Title"> <br>
+    <input [(ngModel)]="body.description" placeholder="Description"> <br>
+
+    <div class="blog-body">
+        <input [(ngModel)]="body.body" placeholder="Body"> <br>
+    </div>
+
+    <button (click)="handlePublish()">Publish</button>
+
+</div>

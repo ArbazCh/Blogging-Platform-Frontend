@@ -5,12 +5,12 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: 'pm-home',
-    templateUrl: './blogs.component.html'
+    templateUrl: './blogs.component.html',
+    styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
     constructor(private blogService: BlogService, private router: Router) { }
 
-    title: string = 'Blogs Home Page';
     blogs: IBlog[] = [];
 
     ngOnInit(): void {

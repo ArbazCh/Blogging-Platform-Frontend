@@ -5,7 +5,8 @@ import { IBlog } from "../blogs/blog";
 
 @Component({
     selector: 'pm-blogPage',
-    templateUrl: './blog-page.component.html'
+    templateUrl: './blog-page.component.html',
+    styleUrls: ['./blog-page.component.css']
 })
 export class BlogPageComponent implements OnInit {
     constructor(private blogService: BlogService, private route: ActivatedRoute) { }

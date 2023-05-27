@@ -1,9 +1,18 @@
-<h3>{{title}}</h3>
-<div *ngFor="let blog of blogs">
-    <a routerLink="/blog/{{blog.id}}">
-        <h4>{{blog.title}}</h4>
-    </a>
-    <p>{{blog.createdAt}}</p>
-    <p>{{blog.description}}</p>
+<div *ngFor="let blog of blogs" class="blog-container">
+
+    <div class="blog-title">
+        <a routerLink="/blog/{{blog.id}}">
+            <h4>{{blog.title}}</h4>
+        </a>
+    </div>
+
+    <div class="blog-date">
+        <p>{{blog.createdAt}}</p>
+    </div>
+
+    <div class="blog-description">
+        <p>{{blog.description}}</p>
+    </div>
+
 </div>
 <!-- <router-outlet></router-outlet> -->

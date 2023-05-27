@@ -1,15 +1,31 @@
-<a>
-    <button routerLink="/register">Register</button>
-</a>
+<div class="header">
 
-<a>
-    <button routerLink="/">Login</button>
-</a>
+    <div class="left-button">
+        <a>
+            <button routerLink="/blogs">Blogs</button>
+        </a>
 
-<a>
-    <button routerLink="/blogs">Blogs</button>
-</a>
+        <a>
+            <button routerLink="/create">Create Blog</button>
+        </a>
+    </div>
 
-<a>
-    <button routerLink="/create">Create Blog</button>
-</a>
+    <div class="right-button">
+        <a>
+            <button routerLink="/register">Register</button>
+        </a>
+
+        <a>
+            <button routerLink="/">Login</button>
+        </a>
+        <a>
+            <button (click)="signOut()">Sign Out</button>
+        </a>
+
+        <a>
+            <button routerLink="/user">My Account</button>
+        </a>
+
+    </div>
+
+</div>

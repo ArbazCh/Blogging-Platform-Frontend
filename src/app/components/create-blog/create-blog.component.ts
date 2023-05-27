@@ -3,7 +3,8 @@ import { BlogService } from "src/app/services/blog.service";
 
 @Component({
     selector: 'pm-create-blog',
-    templateUrl: './create-blog.component.html'
+    templateUrl: './create-blog.component.html',
+    styleUrls: ['./create-blog.component.css']
 })
 export class CreateBlogComponent {
     constructor(private blogService: BlogService) { }

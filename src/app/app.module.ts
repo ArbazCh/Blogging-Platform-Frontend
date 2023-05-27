@@ -13,6 +13,7 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogPageComponent } from './components/blogPage/blog-page.component';
 import { routes } from './routes/route';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CreateBlogComponent } from './components/create-blog/create-blog.compon
     RegisterComponent,
     BlogsComponent,
     BlogPageComponent,
-    CreateBlogComponent
+    CreateBlogComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

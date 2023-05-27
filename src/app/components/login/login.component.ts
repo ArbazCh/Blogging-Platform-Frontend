@@ -4,13 +4,14 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: 'pm-login',
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit {
 
     constructor(private authService: AuthService, private router: Router) { }
-    title: string = 'Login Page';
+    title: string = 'Login';
     email: string = 'arbazch1111@gmail.com';
     password: string = 'Password@123';
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     handleLogin(): void {
         this.authService.login(this.email, this.password).subscribe({
             next: data => {
+                console.log("login data: ", data)
                 localStorage.removeItem("access-token");
                 localStorage.setItem("access-token", data.access_token);
                 this.router.navigate(['/blogs'])

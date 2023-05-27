@@ -1,0 +1,22 @@
+.container {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-top: 2rem;
+}
+
+.container input {
+    width: 75%;
+    height: 30px;
+    margin: 5px;
+}
+
+.blog-body input {
+    height: 300px;
+}
+
+.container button {
+    height: 40px;
+    width: 100px;
+    margin: 2px;
+    border-radius: 7px;
+}
