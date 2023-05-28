@@ -2,23 +2,20 @@
 
     <div class="left-button">
         <a>
-            <button routerLink="/">Blogs</button>
+            <button routerLink="/">My Blogs</button>
         </a>
 
         <a>
-            <button routerLink="/create">Create Blog</button>
+            <button routerLink="/create">Create</button>
         </a>
     </div>
 
     <div class="right-button">
-        <a>
-            <button routerLink="/register">Register</button>
-        </a>
-
-        <a>
+        <a *ngIf="isLoggedIn===false">
             <button routerLink="/login">Login</button>
         </a>
-        <a>
+
+        <a *ngIf="isLoggedIn===true">
             <button (click)="signOut()">Sign Out</button>
         </a>
 

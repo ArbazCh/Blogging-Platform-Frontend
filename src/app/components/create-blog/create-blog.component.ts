@@ -21,7 +21,7 @@ export class CreateBlogComponent {
         this.blogService.createBlog(this.body).subscribe({
             next: data => {
                 alert("Your Blog has Published")
-                this.router.navigate(['/blogs'])
+                this.router.navigate(['/'])
                 console.log('create data call: ', data)
             },
             error: err => console.log('err create blog: ', err)

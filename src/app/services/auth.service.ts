@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { accessToken, apiUrl, httpOptions } from "src/app/helper/helper";
 
 @Injectable({
@@ -28,6 +28,10 @@ export class AuthService {
         if (!isToken) return false
 
         return true
+    }
+
+    getUserDetails(): Observable<any> {
+        return this.http.get(apiUrl + 'auth/user', httpOptions)
     }
 
 }

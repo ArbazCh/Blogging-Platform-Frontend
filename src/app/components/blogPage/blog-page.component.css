@@ -3,3 +3,10 @@
     margin-right: 12.5%;
     margin-top: 2rem;
 }
+
+.blog-container button {
+    height: 40px;
+    width: 100px;
+    margin: 2px;
+    border-radius: 7px;
+}

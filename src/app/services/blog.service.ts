@@ -22,4 +22,8 @@ export class BlogService {
         return this.http.post(apiUrl + 'blog/create', body, httpOptions)
     }
 
+    deleteBlog(id: number): Observable<any> {
+        return this.http.delete(apiUrl + `blog/delete/${id}`, httpOptions)
+    }
+
 }
