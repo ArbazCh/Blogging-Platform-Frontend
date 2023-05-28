@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
                 console.log("login data: ", data)
                 localStorage.removeItem("access-token");
                 localStorage.setItem("access-token", data.access_token);
-                this.router.navigate(['/blogs'])
+                this.router.navigate(['/'])
                 // console.log("access-token", data.access_token)
 
             },

@@ -8,6 +8,13 @@
     background-color: antiquewhite;
 }
 
+.blog-container input {
+    height: 60px;
+    /* width: 50%; */
+    background-color: none;
+    border-radius: 7px;
+}
+
 .blog-title {
     /* border: 2px red solid; */
     margin-left: 20px;

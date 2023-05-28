@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { BlogService } from "src/app/services/blog.service";
 
 @Component({
@@ -7,7 +8,7 @@ import { BlogService } from "src/app/services/blog.service";
     styleUrls: ['./create-blog.component.css']
 })
 export class CreateBlogComponent {
-    constructor(private blogService: BlogService) { }
+    constructor(private blogService: BlogService, private router: Router) { }
 
     body: any = {
         title: 'testing ',
@@ -18,7 +19,11 @@ export class CreateBlogComponent {
 
     handlePublish(): void {
         this.blogService.createBlog(this.body).subscribe({
-            next: data => console.log('create data call: ', data),
+            next: data => {
+                alert("Your Blog has Published")
+                this.router.navigate(['/blogs'])
+                console.log('create data call: ', data)
+            },
             error: err => console.log('err create blog: ', err)
         })
         // console.log(this.title, this.description, this.body)

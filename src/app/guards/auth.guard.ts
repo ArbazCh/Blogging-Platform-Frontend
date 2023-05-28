@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 export const AuthGuard: CanActivateFn =
   (route: ActivatedRouteSnapshot,
@@ -14,7 +14,7 @@ export const AuthGuard: CanActivateFn =
     if (!isTokenValid) {
 
       alert("You are not logged in, please log in first")
-      router.navigate(['/'])
+      router.navigate(['/login'])
 
       return false
     }

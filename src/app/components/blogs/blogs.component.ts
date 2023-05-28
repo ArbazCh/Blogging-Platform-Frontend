@@ -13,22 +13,38 @@ export class BlogsComponent implements OnInit {
 
     blogs: IBlog[] = [];
 
+    filteredBlogs: IBlog[] = [];
+
+    searchTerm: string = '';
+
+    pageSize: number = 5;
+
+    currentPage: number = 1;
+
+    noResultsFound: boolean = false
+
+
     ngOnInit(): void {
         this.blogService.getAllBlogs().subscribe({
             next: data => {
-                this.blogs = data
+                this.blogs = data;
+                this.filteredBlogs = this.blogs;
                 console.log('blog call: ', this.blogs)
+
             },
             error: err => console.log('blog error: ', err)
-        })
+        });
     }
 
-    // navigateToBlog(): void {
-    //     this.router.navigate(['login'])
-    // }
+    onPageChange(pageNumber: number): void {
+        this.currentPage = pageNumber;
+    }
 
+    searchBlog(): void {
+        this.filteredBlogs = this.blogs.filter(blog => blog.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+        // console.log("filter length: ", this.filteredBlogs)
+        this.currentPage = 1;
+        this.noResultsFound = this.filteredBlogs.length === 0
+    }
 
-    // reloadPage(): void {
-    //     window.location.reload();
-    // }
 }

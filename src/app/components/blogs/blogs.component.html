@@ -1,5 +1,17 @@
-<div *ngFor="let blog of blogs" class="blog-container">
+<!-- Search Blogs -->
+<div class="blog-container">
+    <input [(ngModel)]="searchTerm" type="text" placeholder="Search by Title" (input)="searchBlog()">
+</div>
 
+<!-- If Result not Found -->
+<div class="no-result-found " *ngIf="noResultsFound">
+    <h3>No blog found</h3>
+</div>
+
+<!-- All Blogs -->
+
+<div *ngFor="let blog of filteredBlogs.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
+    class="blog-container">
     <div class="blog-title">
         <a routerLink="/blog/{{blog.id}}">
             <h4>{{blog.title}}</h4>
@@ -13,6 +25,7 @@
     <div class="blog-description">
         <p>{{blog.description}}</p>
     </div>
-
 </div>
-<!-- <router-outlet></router-outlet> -->
+
+<mat-paginator [length]="blogs.length" [pageSize]="pageSize"
+    (page)="onPageChange($event.pageIndex + 1)"></mat-paginator>
