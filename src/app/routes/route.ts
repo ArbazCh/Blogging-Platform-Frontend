@@ -8,10 +8,16 @@ import { UserProfileComponent } from "../components/user-profile/user-profile.co
 import { AuthGuard } from "../guards/auth.guard";
 
 export const routes: Routes = [
+
     { path: 'login', component: LoginComponent },
+
     { path: 'register', component: RegisterComponent },
+
     { path: '', canActivate: [AuthGuard], component: BlogsComponent },
+
     { path: 'blog/:id', canActivate: [AuthGuard], component: BlogPageComponent },
+
     { path: 'create', canActivate: [AuthGuard], component: CreateBlogComponent },
+
     { path: 'user', canActivate: [AuthGuard], component: UserProfileComponent }
 ]
