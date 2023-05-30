@@ -1,8 +1,7 @@
 <div class="blog-container">
     <button (click)="deleteBlog()">Delete</button>
     <h2>{{blog[0].title}}</h2>
-    <p>{{blog[0].createdAt}}</p>
+    <p>{{blog[0].createdAt | date}} </p>
     <p>{{blog[0].description}}</p>
     <p>{{blog[0].body}}</p>
-
 </div>

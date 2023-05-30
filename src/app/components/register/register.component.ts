@@ -11,25 +11,19 @@ import { AuthService } from "src/app/services/auth.service";
 export class RegisterComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
-    title: string = "Register Yourself";
+   regData:any={ name: 'xyz',
 
-    name: string = 'xyz';
+    email: 'xyz@gmail.com',
 
-    email: string = 'xyz@gmail.com';
+    password:'Password@123',
 
-    password: string = 'Password@123';
-
-    confirmPassword: string = 'Password@123';
+    confirmPassword: 'Password@123'}
 
     handleSubmit(): void {
+        
+        const {name,email,password,confirmPassword}=this.regData
 
-        if (!this.email || !this.password || !this.title || !this.name || !this.confirmPassword) {
-
-            alert('Please enter all required fields.');
-
-        } else {
-
-            this.authService.register(this.name, this.email, this.password, this.confirmPassword).subscribe({
+            this.authService.register(name, email, password, confirmPassword).subscribe({
 
                 next: data => {
 
@@ -50,9 +44,6 @@ export class RegisterComponent {
                     console.log('register call error: ', err)
                 }
             })
-        }
-
-
 
     }
 

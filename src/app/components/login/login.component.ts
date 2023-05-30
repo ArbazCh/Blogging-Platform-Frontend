@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
+import { accessToken } from "src/app/helper/helper";
 
 @Component({
     selector: 'pm-login',
@@ -12,47 +14,41 @@ export class LoginComponent {
 
     constructor(private authService: AuthService, private router: Router) { }
 
-    title: string = 'Login';
+    form: any = {
+        email: '', //arbazch1616@gmail.com
+        password: '' //Password@123
+    }
 
-    email: string = 'arbazch1111@gmail.com';
+    isLoggedinFailed: boolean = false;
+    errorMessage: string = '';
 
-    password: string = 'Password@123';
+    handleLogin(login: NgForm): void {
 
-    handleLogin(): void {
+        // console.log("Form Submitted!!!", login.validator)
 
-        if (!this.email || !this.password) {
+        const { email, password } = this.form
 
-            alert('Please enter both email and password.');
+        this.authService.login(email, password).subscribe({
 
-        } else {
+            next: data => {
 
-            this.authService.login(this.email, this.password).subscribe({
+                console.log("login data: ", data)
 
-                next: data => {
+                localStorage.removeItem("access-token");
 
-                    console.log("login data: ", data)
+                localStorage.setItem("access-token", data.access_token);
 
-                    localStorage.removeItem("access-token");
+                this.router.navigate(['/'])
 
-                    localStorage.setItem("access-token", data.access_token);
+            },
+            error: err => {
 
-                    this.router.navigate(['/'])
+                this.isLoggedinFailed = true;
 
-                    // console.log("access-token", data.access_token)
+                this.errorMessage = err.error.message
+            }
+        })
 
-                },
-                error: err => {
-
-                    if (err.status === 401) {
-
-                        alert("Invalid Credentials")
-
-                    }
-
-                    console.log("Error :", err.status)
-                }
-            })
-        }
 
 
     }

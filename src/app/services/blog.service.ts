@@ -24,12 +24,12 @@ export class BlogService {
 
     createBlog(body: any): Observable<any> {
 
-        return this.http.post(apiUrl + 'blog/create', body, httpOptions)
+        return this.http.post(apiUrl + 'blog/', body, httpOptions)
     }
 
     deleteBlog(id: number): Observable<any> {
 
-        return this.http.delete(apiUrl + `blog/delete/${id}`, httpOptions)
+        return this.http.delete(apiUrl + `blog/${id}`, httpOptions)
     }
 
 }

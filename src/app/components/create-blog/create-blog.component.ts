@@ -27,28 +27,32 @@ export class CreateBlogComponent {
 
     handlePublish(): void {
 
-        this.blogService.createBlog(this.body).subscribe({
+        if (!this.body.title || !this.body.description || !this.body.body) {
 
-            next: data => {
+            alert("Please fill all the required fields")
+        } else {
+            this.blogService.createBlog(this.body).subscribe({
 
-                alert("Your Blog has Published")
+                next: data => {
 
-                this.router.navigate(['/'])
+                    alert("Your Blog has Published")
 
-                console.log('create data call: ', data)
-            },
-            error: err => {
+                    this.router.navigate(['/'])
 
-                if (err.status === 400) {
+                    console.log('create data call: ', data)
+                },
+                error: err => {
 
-                    alert(`${err.statusText}`)
+                    if (err.status === 400) {
 
+                        alert(`${err.statusText}`)
+
+                    }
+                    console.log('err create blog: ', err)
                 }
-
-                console.log('err create blog: ', err)
-            }
-        })
-        // console.log(this.title, this.description, this.body)
+            })
+            // console.log(this.title, this.description, this.body)
+        }
     }
 
 }

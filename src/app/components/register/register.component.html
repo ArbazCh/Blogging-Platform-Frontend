@@ -1,9 +1,37 @@
-<div class="container">
+<!-- <div class="container">
     <h3>{{title}}</h3>
     <input [(ngModel)]="name" placeholder="name">
     <input [(ngModel)]="email" placeholder="email">
     <input [(ngModel)]="password" placeholder="password">
     <input [(ngModel)]="confirmPassword" placeholder="confirm password">
     <button (click)="handleSubmit()">Submit</button>
+    <p>Already have an account, Login <a routerLink="/login">here</a></p>
+</div> -->
 
-</div>
+<form #register="ngForm" (ngSubmit)="register.valid && handleSubmit()">  
+    <div class="container">
+
+        <h3>Register Yourself</h3>
+
+        <input [(ngModel)]="regData.name" name="name" placeholder="name" required #regName="ngModel">
+        <p *ngIf="regName.errors && register.submitted">Name is required</p>
+
+        <input [(ngModel)]="regData.email" name="email" placeholder="email" #regEmail="ngModel" required
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+
+        <p *ngIf="regEmail.invalid && register.submitted">
+            <span *ngIf="regEmail.errors?.['required']">Email is required.</span>
+            <span *ngIf="regEmail.errors?.['pattern']">Email is not in a valid format.</span>
+        </p>
+
+        <input [(ngModel)]="regData.password" name="password" placeholder="password" #regPass="ngModel" required>
+        <p *ngIf="regPass.errors && register.submitted">Pssword is required</p>
+
+        <input [(ngModel)]="regData.confirmPassword" name="confirmPassword" placeholder="confirm password" #regConPass="ngModel" required>
+        <p *ngIf="regConPass.errors && register.submitted">Confirm password is required</p>
+
+        <button type="submit">Submit</button>
+
+        <p>Already have an account, Login <a routerLink="/login">here</a></p>
+    </div>
+</form>

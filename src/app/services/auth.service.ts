@@ -27,6 +27,7 @@ export class AuthService {
 
         let isToken: boolean = false
 
+        console.log("token, ", accessToken)
         if (accessToken) isToken = true
 
         if (!isToken) return false

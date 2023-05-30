@@ -24,7 +24,10 @@ export class HeaderComponent implements OnInit {
 
     signOut(): void {
 
+
         localStorage.removeItem('access-token')
+
+        alert("You are logged out")
 
         this.router.navigate(['/login'])
     }

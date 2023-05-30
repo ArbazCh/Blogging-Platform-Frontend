@@ -1,13 +1,33 @@
-<div class="container">
+<!-- <div class="container">
     <h3>{{title}}</h3>
-
-
     <input [(ngModel)]="email" id="email" type="text" placeholder="email">
     <input [(ngModel)]="password" type="password" placeholder="password">
-    <!-- <div class="show-password">
-        <input type="checkbox">Show Password
-    </div> -->
     <button (click)="handleLogin()">Login</button>
-
     <p>Not have an account, register <a routerLink="/register">here</a></p>
-</div>
+</div> -->
+
+<form #login="ngForm" (ngSubmit)="login.valid && handleLogin(login)">
+    <div class="container">
+        <h3>Login</h3>
+
+        <input [(ngModel)]="form.email" type="email" name="email" required #primEmail="ngModel"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+
+        <p *ngIf="primEmail.invalid && login.submitted">
+            <span *ngIf="primEmail.errors?.['required']">Email is required.</span>
+            <span *ngIf="primEmail.errors?.['pattern']">Email is not in a valid format.</span>
+        </p>
+
+        <input [(ngModel)]="form.password" type="password" name="password" required #password="ngModel">
+
+        <p *ngIf="password.errors && login.submitted">
+            Password is required
+        </p>
+
+        <p *ngIf="isLoggedinFailed && login.submitted"> Login Failed: {{errorMessage}}</p>
+
+        <button type="submit">Submit</button>
+
+        <p>Not have an account, register <a routerLink="/register">here</a></p>
+    </div>
+</form>
