@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-import { accessToken } from "src/app/helper/helper";
+// import { accessToken } from "src/app/helper/helper";
 
 @Component({
     selector: 'pm-login',
@@ -15,8 +15,8 @@ export class LoginComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
     form: any = {
-        email: '', //arbazch1616@gmail.com
-        password: '' //Password@123
+        email: 'arbazch1616@gmail.com', //
+        password: 'Password@123' //
     }
 
     isLoggedinFailed: boolean = false;

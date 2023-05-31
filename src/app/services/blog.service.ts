@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, retry } from "rxjs";
-import { apiUrl, httpOptions } from "src/app/helper/helper";
+import { Observable } from "rxjs";
+import { apiUrl, getHttpOptions } from "src/app/helper/helper";
 
 
 @Injectable({
@@ -12,22 +12,21 @@ export class BlogService {
 
     constructor(private http: HttpClient) { }
 
-    getAllBlogs(): Observable<any> {
-
+    getAllBlogs(httpOptions:any): Observable<any> {
         return this.http.get(apiUrl + 'blog', httpOptions)
     }
 
-    getBlogBYId(id: number): Observable<any> {
+    getBlogBYId(id: number, httpOptions:any): Observable<any> {
 
         return this.http.get(apiUrl + `blog/${id}`, httpOptions)
     }
 
-    createBlog(body: any): Observable<any> {
+    createBlog(body: any, httpOptions:any): Observable<any> {
 
         return this.http.post(apiUrl + 'blog/', body, httpOptions)
     }
 
-    deleteBlog(id: number): Observable<any> {
+    deleteBlog(id: number, httpOptions:any): Observable<any> {
 
         return this.http.delete(apiUrl + `blog/${id}`, httpOptions)
     }

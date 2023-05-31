@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BlogService } from "src/app/services/blog.service";
 import { ActivatedRoute, Router, RouterLink } from '@angular/router'
 import { IBlog } from "../blogs/blog";
+import { getHttpOptions } from "src/app/helper/helper";
 
 @Component({
 
@@ -21,9 +22,13 @@ export class BlogPageComponent implements OnInit {
 
     ngOnInit(): void {
 
+        const httpOptions = {
+            headers: getHttpOptions()
+        };
+
         const id = this.route.snapshot.paramMap.get('id');
 
-        this.blogService.getBlogBYId(Number(id)).subscribe({
+        this.blogService.getBlogBYId(Number(id),httpOptions).subscribe({
 
             next: data => {
 
@@ -37,7 +42,11 @@ export class BlogPageComponent implements OnInit {
 
     deleteBlog(): void {
 
-        this.blogService.deleteBlog(this.blog[0].id).subscribe({
+        const httpOptions = {
+            headers: getHttpOptions()
+        };
+
+        this.blogService.deleteBlog(this.blog[0].id,httpOptions).subscribe({
 
             next: data => {
 

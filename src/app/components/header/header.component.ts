@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { accessToken } from "src/app/helper/helper";
+import { getToken } from "src/app/helper/helper";
+import { AuthService } from "src/app/services/auth.service";
+// import { accessToken } from "src/app/helper/helper";
 
 @Component({
 
@@ -11,19 +13,17 @@ import { accessToken } from "src/app/helper/helper";
     styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-    constructor(private router: Router,) { }
+    constructor(private router: Router, private authService:AuthService) { }
 
-    isLoggedIn: boolean = false;
 
-    ngOnInit(): void {
 
-        if (accessToken) this.isLoggedIn = true
-    }
-
+    get isLoggedIn(): boolean{
+        return !! (localStorage.getItem('access-token')) 
+      }
+//
     signOut(): void {
-
 
         localStorage.removeItem('access-token')
 

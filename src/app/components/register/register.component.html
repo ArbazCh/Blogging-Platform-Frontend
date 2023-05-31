@@ -8,7 +8,7 @@
     <p>Already have an account, Login <a routerLink="/login">here</a></p>
 </div> -->
 
-<form #register="ngForm" (ngSubmit)="register.valid && handleSubmit()">  
+<form #register="ngForm" (ngSubmit)="register.valid  && handleSubmit(register) ">  
     <div class="container">
 
         <h3>Register Yourself</h3>
@@ -20,6 +20,7 @@
         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
 
         <p *ngIf="regEmail.invalid && register.submitted">
+
             <span *ngIf="regEmail.errors?.['required']">Email is required.</span>
             <span *ngIf="regEmail.errors?.['pattern']">Email is not in a valid format.</span>
         </p>
@@ -29,6 +30,10 @@
 
         <input [(ngModel)]="regData.confirmPassword" name="confirmPassword" placeholder="confirm password" #regConPass="ngModel" required>
         <p *ngIf="regConPass.errors && register.submitted">Confirm password is required</p>
+
+        <!-- <p *ngIf="register.value['password']!==register.value['confirmPassword'] && register.submitted"> Password and Confirm Password should same</p> -->
+
+        <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
 
         <button type="submit">Submit</button>
 

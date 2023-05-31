@@ -2,14 +2,24 @@ import { HttpHeaders } from "@angular/common/http";
 
 export const apiUrl = 'http://localhost:5000/'
 
-export const accessToken = localStorage.getItem('access-token')
+// export const accessToken = localStorage.getItem('access-token')
 
-export const httpOptions = {
+export const getToken=():string | null => {
+    const accessToken= localStorage.getItem('access-token')
 
-    headers: new HttpHeaders({
+    return accessToken
+}
 
-        'Content-Type': 'application/json',
+export const getHttpOptions = (): HttpHeaders => {
 
-        'Authorization': `Bearer ${accessToken}`
-    })
-};
+    const accessToken = getToken();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+
+    });
+    return headers;
+  };
+  
+

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { getHttpOptions } from "src/app/helper/helper";
 import { BlogService } from "src/app/services/blog.service";
 
 @Component({
@@ -27,11 +28,15 @@ export class CreateBlogComponent {
 
     handlePublish(): void {
 
+        const httpOptions = {
+            headers: getHttpOptions()
+        };
+
         if (!this.body.title || !this.body.description || !this.body.body) {
 
             alert("Please fill all the required fields")
         } else {
-            this.blogService.createBlog(this.body).subscribe({
+            this.blogService.createBlog(this.body, httpOptions).subscribe({
 
                 next: data => {
 

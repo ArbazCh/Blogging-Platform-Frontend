@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 
@@ -11,7 +12,9 @@ import { AuthService } from "src/app/services/auth.service";
 export class RegisterComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
-   regData:any={ name: 'xyz',
+   regData:any={ 
+    
+    name: 'xyz',
 
     email: 'xyz@gmail.com',
 
@@ -19,15 +22,22 @@ export class RegisterComponent {
 
     confirmPassword: 'Password@123'}
 
-    handleSubmit(): void {
+    isRegFailed:boolean=false;
+
+    errMessage:string='';
+
+
+    handleSubmit(register:NgForm): void {
+
+        console.log("ngForm: ,",register)
         
-        const {name,email,password,confirmPassword}=this.regData
+        const {name,email,password,confirmPassword} = this.regData
 
             this.authService.register(name, email, password, confirmPassword).subscribe({
 
                 next: data => {
 
-                    alert("You are registered Successfully, please login")
+                    // alert("You are registered Successfully, please login")
 
                     this.router.navigate(['/login'])
 
@@ -36,10 +46,8 @@ export class RegisterComponent {
                 },
                 error: err => {
 
-                    if (err.status === 400) {
-
-                        alert(`Bad Request`)
-                    }
+                    this.isRegFailed=true
+                    this.errMessage=err.error.message
 
                     console.log('register call error: ', err)
                 }

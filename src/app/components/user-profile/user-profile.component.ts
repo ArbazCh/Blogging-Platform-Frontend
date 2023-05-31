@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { getHttpOptions } from "src/app/helper/helper";
 import { AuthService } from "src/app/services/auth.service";
 
 
@@ -16,9 +17,15 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.authService.getUserDetails().subscribe({
+        const httpOptions = {
+            headers: getHttpOptions()
+        };
+
+        this.authService.getUserDetails(httpOptions).subscribe({
 
             next: data => {
+
+                console.log("user data: ", data)
 
                 this.name = data.name;
 

@@ -10,24 +10,38 @@
     <div class="container">
         <h3>Login</h3>
 
-        <input [(ngModel)]="form.email" type="email" name="email" required #primEmail="ngModel"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+        <input 
+        [(ngModel)]="form.email" 
+        type="email" 
+        name="email" 
+        required 
+        #primEmail="ngModel"
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" 
+        placeholder="Email">
 
         <p *ngIf="primEmail.invalid && login.submitted">
             <span *ngIf="primEmail.errors?.['required']">Email is required.</span>
             <span *ngIf="primEmail.errors?.['pattern']">Email is not in a valid format.</span>
         </p>
 
-        <input [(ngModel)]="form.password" type="password" name="password" required #password="ngModel">
+        <input 
+        [(ngModel)]="form.password" 
+        type="password" 
+        name="password" 
+        required 
+        #password="ngModel" 
+        placeholder="Password">
 
         <p *ngIf="password.errors && login.submitted">
             Password is required
         </p>
 
-        <p *ngIf="isLoggedinFailed && login.submitted"> Login Failed: {{errorMessage}}</p>
+        <p *ngIf="isLoggedinFailed && login.submitted"> 
+            Login Failed: {{errorMessage}}</p>
 
         <button type="submit">Submit</button>
 
         <p>Not have an account, register <a routerLink="/register">here</a></p>
+        
     </div>
 </form>
