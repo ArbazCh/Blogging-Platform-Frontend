@@ -13,21 +13,25 @@ import { AuthService } from "src/app/services/auth.service";
     styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-    constructor(private router: Router, private authService:AuthService) { }
+    constructor(private router: Router) { }
 
 
 
     get isLoggedIn(): boolean{
+        console.log("getter called")
         return !! (localStorage.getItem('access-token')) 
+    
       }
-//
+
+      ngOnInit(): void {
+          console.log("header renderes")
+      }
+
     signOut(): void {
 
         localStorage.removeItem('access-token')
-
-        alert("You are logged out")
 
         this.router.navigate(['/login'])
     }

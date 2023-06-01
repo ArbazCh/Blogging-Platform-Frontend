@@ -1,13 +1,26 @@
-<div class="container">
-    <h3>Create Your Blog</h3>
+<form [formGroup]="blogForm" (ngSubmit)="handlePublish()" >
 
-    <input [(ngModel)]="body.title" placeholder="Title"> <br>
-    <input [(ngModel)]="body.description" placeholder="Description"> <br>
+    <div class="container">
+        <h3>Create Your Blog</h3>
+    
+        <p *ngIf="blogForm.get('title')?.invalid && submitted" >Title is required</p>
 
-    <div class="blog-body">
-        <input [(ngModel)]="body.body" placeholder="Body"> <br>
+        <input placeholder="Title" formControlName="title"> <br>
+
+        <p *ngIf="blogForm.get('description')?.invalid && submitted" >Description is required</p>
+        
+        <input placeholder="Description" formControlName="description"> <br>
+    
+        <p *ngIf="blogForm.get('body')?.invalid && submitted" >Body is required</p>
+        
+        <div class="blog-body">
+            <input placeholder="Body" formControlName="body"> <br>
+        </div>
+
+        <p *ngIf="isPublishFailed">Publication Failed: {{errorMessage}}</p>
+    
+        <button >Publish</button>
+    
     </div>
 
-    <button (click)="handlePublish()">Publish</button>
-
-</div>
+</form>

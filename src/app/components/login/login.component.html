@@ -1,3 +1,5 @@
+<!-- Simple HTML -->
+
 <!-- <div class="container">
     <h3>{{title}}</h3>
     <input [(ngModel)]="email" id="email" type="text" placeholder="email">
@@ -6,7 +8,9 @@
     <p>Not have an account, register <a routerLink="/register">here</a></p>
 </div> -->
 
-<form #login="ngForm" (ngSubmit)="login.valid && handleLogin(login)">
+<!-- Template Driven -->
+
+<!-- <form #login="ngForm" (ngSubmit)="login.valid && handleLogin(login)">
     <div class="container">
         <h3>Login</h3>
 
@@ -38,6 +42,42 @@
 
         <p *ngIf="isLoggedinFailed && login.submitted"> 
             Login Failed: {{errorMessage}}</p>
+
+        <button type="submit">Submit</button>
+
+        <p>Not have an account, register <a routerLink="/register">here</a></p>
+        
+    </div>
+</form> -->
+
+<!-- Reactive Form -->
+
+<form [formGroup]="form" (ngSubmit)=" handleLogin()">
+    <div class="container">
+        <h3>Login</h3>
+
+        <input formControlName="email" placeholder="Email">
+
+        <p *ngIf="form.get('email')?.invalid && submitted">
+
+            <span *ngIf="form.get('email')?.hasError('required')">
+                Email is required.
+            </span>
+
+            <span *ngIf="form.get('email')?.hasError('pattern')">
+                Email is not in a valid format.
+            </span>
+        </p>
+
+        <input type="password" formControlName="password" placeholder="Password">
+
+        <p *ngIf="form.get('password')?.hasError('required') && submitted">
+            Password is required
+        </p>
+
+        <p *ngIf="isLoggedinFailed && submitted"> 
+            Login Failed: {{errorMessage}}
+        </p>
 
         <button type="submit">Submit</button>
 

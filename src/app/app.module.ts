@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { routes } from './routes/route';
@@ -15,6 +15,7 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogPageComponent } from './components/blogPage/blog-page.component';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatPaginatorModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

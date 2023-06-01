@@ -1,3 +1,50 @@
+
+<form [formGroup]="regForm" (ngSubmit)="handleSubmit() ">  
+    <div class="container">
+
+        <h3>Register Yourself</h3>
+
+        <input placeholder="name" formControlName="name">
+
+        <p *ngIf="regForm.get('name')?.invalid && submitted">Name is required</p>
+
+        <input placeholder="email" formControlName="email">
+
+        <p *ngIf="regForm.get('email')?.invalid && submitted">
+
+            <span *ngIf="regForm.get('email')?.hasError('required')">Email is required.</span>
+            <span *ngIf="regForm.get('email')?.hasError('pattern')">Email is not in a valid format.</span>
+        </p>
+
+        <input placeholder="password" formControlName="password">
+
+        <p *ngIf="regForm.get('password')?.invalid && submitted">Pssword is required</p>
+
+        <input placeholder="confirm password" formControlName="confirmPassword">
+
+        <p *ngIf="regForm.get('confirmPassword')?.invalid && submitted">Confirm password is required</p>
+
+        <!-- <p *ngIf="register.value['password']!==register.value['confirmPassword'] && register.submitted"> Password and Confirm Password should same</p> -->
+
+        <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
+
+        <button type="submit">Submit</button>
+
+        <p>Already have an account, Login <a routerLink="/login">here</a></p>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <div class="container">
     <h3>{{title}}</h3>
     <input [(ngModel)]="name" placeholder="name">
@@ -8,7 +55,7 @@
     <p>Already have an account, Login <a routerLink="/login">here</a></p>
 </div> -->
 
-<form #register="ngForm" (ngSubmit)="register.valid  && handleSubmit(register) ">  
+<!-- <form [#register="ngForm"] (ngSubmit)="register.valid  && handleSubmit() ">  
     <div class="container">
 
         <h3>Register Yourself</h3>
@@ -31,12 +78,17 @@
         <input [(ngModel)]="regData.confirmPassword" name="confirmPassword" placeholder="confirm password" #regConPass="ngModel" required>
         <p *ngIf="regConPass.errors && register.submitted">Confirm password is required</p>
 
-        <!-- <p *ngIf="register.value['password']!==register.value['confirmPassword'] && register.submitted"> Password and Confirm Password should same</p> -->
+        <p *ngIf="register.value['password']!==register.value['confirmPassword'] && register.submitted"> Password and Confirm Password should same</p> -->
 
-        <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
+        <!-- <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
 
         <button type="submit">Submit</button>
 
         <p>Already have an account, Login <a routerLink="/login">here</a></p>
     </div>
-</form>
+</form> -->
+
+
+
+
+

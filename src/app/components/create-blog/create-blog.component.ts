@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { getHttpOptions } from "src/app/helper/helper";
 import { BlogService } from "src/app/services/blog.service";
@@ -13,34 +14,38 @@ import { BlogService } from "src/app/services/blog.service";
 
 })
 
-export class CreateBlogComponent {
+export class CreateBlogComponent implements OnInit {
 
     constructor(private blogService: BlogService, private router: Router) { }
 
-    body: any = {
+    blogForm!:FormGroup;
+    submitted: boolean=false;
+    errorMessage:string='';
+    isPublishFailed:boolean=false
 
-        title: '',
-
-        description: '',
-
-        body: ''
+    ngOnInit(): void {
+        this.blogForm=new FormGroup({
+            title: new FormControl("", Validators.required),
+            description: new FormControl("", Validators.required),
+            body:new FormControl("", Validators.required)
+        })
     }
 
     handlePublish(): void {
+
+        this.submitted=true;
 
         const httpOptions = {
             headers: getHttpOptions()
         };
 
-        if (!this.body.title || !this.body.description || !this.body.body) {
+        const {title, description,body}=this.blogForm.value
 
-            alert("Please fill all the required fields")
-        } else {
-            this.blogService.createBlog(this.body, httpOptions).subscribe({
+        if (this.blogForm.valid){
+
+            this.blogService.createBlog({title,description,body}, httpOptions).subscribe({
 
                 next: data => {
-
-                    alert("Your Blog has Published")
 
                     this.router.navigate(['/'])
 
@@ -48,15 +53,13 @@ export class CreateBlogComponent {
                 },
                 error: err => {
 
-                    if (err.status === 400) {
+                    this.errorMessage=err.error.message;
+                    this.isPublishFailed=true
 
-                        alert(`${err.statusText}`)
 
-                    }
                     console.log('err create blog: ', err)
                 }
             })
-            // console.log(this.title, this.description, this.body)
         }
     }
 

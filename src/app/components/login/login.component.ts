@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
-// import { accessToken } from "src/app/helper/helper";
+import { FormControl, FormGroup,Validators } from "@angular/forms";
+import { emailPattern } from "src/app/helper/helper";
+
 
 @Component({
     selector: 'pm-login',
@@ -10,47 +11,63 @@ import { NgForm } from "@angular/forms";
     styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
     constructor(private authService: AuthService, private router: Router) { }
 
-    form: any = {
-        email: 'arbazch1616@gmail.com', //
-        password: 'Password@123' //
-    }
+    form!:FormGroup;
 
     isLoggedinFailed: boolean = false;
+
     errorMessage: string = '';
 
-    handleLogin(login: NgForm): void {
+    submitted:boolean=false;
 
-        // console.log("Form Submitted!!!", login.validator)
+    ngOnInit(): void {
 
-        const { email, password } = this.form
+        this.form=new FormGroup({
 
-        this.authService.login(email, password).subscribe({
+            email:new FormControl("arbazch1616@gmail.com", 
 
-            next: data => {
+            [Validators.required, 
 
-                console.log("login data: ", data)
+            Validators.pattern(`${emailPattern}`)]),
 
-                localStorage.removeItem("access-token");
-
-                localStorage.setItem("access-token", data.access_token);
-
-                this.router.navigate(['/'])
-
-            },
-            error: err => {
-
-                this.isLoggedinFailed = true;
-
-                this.errorMessage = err.error.message
-            }
+            password:new FormControl("Password@123",Validators.required)
         })
-
-
-
     }
+
+    handleLogin(): void {
+
+        this.submitted=true;
+
+        if(this.form.valid){
+
+            const { email , password } = this.form.value;
+
+            this.authService.login(email, password).subscribe({
+    
+                next: data => {
+    
+                    console.log("login data: ", data)
+    
+                    localStorage.removeItem("access-token");
+    
+                    localStorage.setItem("access-token", data.access_token);
+    
+                    this.router.navigate(['/'])
+    
+                },
+                error: err => {
+    
+                    this.isLoggedinFailed = true;
+    
+                    this.errorMessage = err.error.message
+                }
+            })
+        }
+          
+    }
+
 
 }
