@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
     submitted:boolean=false;
 
+    notificationMessage:string=''
+    
     ngOnInit(): void {
 
         this.form=new FormGroup({
@@ -50,6 +52,8 @@ export class LoginComponent implements OnInit {
                 next: data => {
     
                     console.log("login data: ", data)
+
+                    // this.notificationMessage= "You are Logged in"
     
                     localStorage.removeItem("access-token");
     

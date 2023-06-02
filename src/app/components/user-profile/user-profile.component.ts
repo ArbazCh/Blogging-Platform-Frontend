@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { getHttpOptions } from "src/app/helper/helper";
+// import { getHttpOptions } from "src/app/helper/helper";
 import { AuthService } from "src/app/services/auth.service";
 
 
@@ -17,11 +17,7 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit(): void {
 
-        const httpOptions = {
-            headers: getHttpOptions()
-        };
-
-        this.authService.getUserDetails(httpOptions).subscribe({
+        this.authService.getUserDetails().subscribe({
 
             next: data => {
 
@@ -32,7 +28,6 @@ export class UserProfileComponent implements OnInit {
                 this.email = data.email;
 
                 console.log("user data: ", data)
-
             },
 
             error: err => console.log("Error user detail: ", err)

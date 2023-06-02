@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,6 +15,8 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogPageComponent } from './components/blogPage/blog-page.component';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotifyComponent } from './components/notify/notify.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 // import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
@@ -26,7 +28,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     BlogsComponent,
     BlogPageComponent,
     CreateBlogComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotifyComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ReactiveFormsModule,
     
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

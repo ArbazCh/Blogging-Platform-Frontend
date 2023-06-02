@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { getHttpOptions } from "src/app/helper/helper";
+// import { getHttpOptions } from "src/app/helper/helper";
 import { BlogService } from "src/app/services/blog.service";
 
 @Component({
@@ -35,15 +35,11 @@ export class CreateBlogComponent implements OnInit {
 
         this.submitted=true;
 
-        const httpOptions = {
-            headers: getHttpOptions()
-        };
-
         const {title, description,body}=this.blogForm.value
 
         if (this.blogForm.valid){
 
-            this.blogService.createBlog({title,description,body}, httpOptions).subscribe({
+            this.blogService.createBlog({title,description,body}).subscribe({
 
                 next: data => {
 

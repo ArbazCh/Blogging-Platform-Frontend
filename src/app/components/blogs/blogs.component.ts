@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BlogService } from "src/app/services/blog.service";
 import { IBlog } from "./blog";
 import { Router } from "@angular/router";
-import { getHttpOptions } from "src/app/helper/helper";
+// import { getHttpOptions } from "src/app/helper/helper";
 
 @Component({
 
@@ -30,12 +30,8 @@ export class BlogsComponent implements OnInit {
 
 
     ngOnInit(): void {
-        
-        const httpOptions = {
-            headers: getHttpOptions()
-        };
 
-        this.blogService.getAllBlogs(httpOptions).subscribe({
+        this.blogService.getAllBlogs().subscribe({
 
             next: data => {
 

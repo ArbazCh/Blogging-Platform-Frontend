@@ -1,21 +1,22 @@
 <div class="header">
 
     <div class="left-button">
-        <a>
+        <a><button>Home</button></a>
+        <a *ngIf="isLoggedIn">
             <button routerLink="/">My Blogs</button>
         </a>
 
-        <a>
+        <a  *ngIf="isLoggedIn">
             <button routerLink="/create">Create</button>
         </a>
     </div>
 
     <div class="right-button">
-        <a *ngIf="isLoggedIn===false">
+        <a *ngIf="!isLoggedIn">
             <button routerLink="/login">Login</button>
         </a>
 
-        <a *ngIf="isLoggedIn===true">
+        <a *ngIf="isLoggedIn">
             <button (click)="signOut()">Sign Out</button>
         </a>
 
