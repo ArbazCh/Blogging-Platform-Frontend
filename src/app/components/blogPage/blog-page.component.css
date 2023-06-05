@@ -11,8 +11,26 @@
     border-radius: 7px;
 }
 
-.comments input{
+.comment-form input{
     width: 70%;
     height: 30px;
     margin-top: 200px;
+}
+
+.comments-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    background-color: antiquewhite;
+}
+.single-comment{
+    background-color: blanchedalmond;
+    padding: 1px;
+}
+.comment-date{
+    font-size: small;
+    margin-top: 2px;
+}
+.comment-author{
+    font-size: small;
 }

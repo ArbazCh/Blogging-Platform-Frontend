@@ -1,13 +1,14 @@
 <div class="blog-container">
-    <button (click)="deleteBlog()">Delete</button>
+    <button *ngIf="isLoogedin" (click)="deleteBlog()">Delete</button>
     <h2>{{blog[0].title}}</h2>
     <p>{{blog[0].createdAt | date}} </p>
     <p>{{blog[0].description}}</p>
     <p>{{blog[0].body}}</p>
 
-    <div class="comments">
-        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" >
+    <div class="comment-form">
+        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" *ngIf="isLoogedin">
             <input 
+            placeholder="Add Comment"
             type="text" 
             name="comments"
             [(ngModel)]="content" 
@@ -17,4 +18,21 @@
             <p *ngIf="priComment.invalid && addComment.submitted">Comment is required</p>
         </form>
     </div>
+
+    <h3>
+        Comments
+    </h3>
+    <p *ngIf="!isLoogedin">Login to add comments</p>
+    <div class="comments-container" *ngFor="let comment of comments">
+        <div class="single-comment">
+            <h5>{{comment.content}}</h5>
+            <div class="comment-date">
+                <p>{{comment.createdAt | date}}</p>
+            </div>
+            <div class="comment-author">
+                <p>{{comment.userName}}</p>
+            </div>
+        </div>
+    </div>
+
 </div>
