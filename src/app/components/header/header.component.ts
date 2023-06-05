@@ -13,19 +13,24 @@ import { AuthService } from "src/app/services/auth.service";
 
     styleUrls: ['./header.component.css'],
 
-    // changeDetection: ChangeDetectionStrategy.Default
 })
 
-export class HeaderComponent implements OnInit,OnDestroy {
+export class HeaderComponent implements OnInit {
 
     constructor(private router: Router, private authService:AuthService) { }
     private authListenerSubs!: Subscription;  
-    isLoggedIn!: boolean;
+    isLoggedIn: boolean=false;
 
       ngOnInit(): void {
+
+        this.isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+
         this.authListenerSubs=this.authService.getAuthStatusListener().subscribe(isAuthenticated=>{
+    
           this.isLoggedIn=isAuthenticated
+ 
         })
+       
       }
 
       ngOnDestroy():void{
@@ -35,18 +40,24 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
     signOut(): void {
 
-      // this.authService.signOut().subscribe(isAuthenticated=>this.isLoggedIn=isAuthenticated)
+      this.authService.logout();
 
-        localStorage.removeItem('access-token')
-
-        this.isLoggedIn=false
-
-        this.router.navigate(['/login'])
+        this.router.navigate(['/'])
     }
 
 }
 
 
+
+    
+    // changeDetection: ChangeDetectionStrategy.OnPush
+
+    // this.isLoggedIn=this.authService.getIsLoggedIn()
+    // this.authService.signOut().subscribe(isAuthenticated=>this.isLoggedIn=isAuthenticated)
+
+    // localStorage.removeItem('access-token')
+
+    // this.isLoggedIn=false
     // get isLoggedIn(): boolean{
     //     console.log("getter called")
     //     return !! (localStorage.getItem('access-token')) 

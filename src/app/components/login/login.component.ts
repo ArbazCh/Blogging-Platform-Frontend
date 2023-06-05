@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     
                     localStorage.setItem("access-token", data.access_token);
     
-                    this.router.navigate(['/'])
+                    this.router.navigate(['/blogs'])
     
                 },
                 error: err => {

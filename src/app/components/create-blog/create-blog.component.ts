@@ -45,7 +45,7 @@ export class CreateBlogComponent implements OnInit {
 
                     this.router.navigate(['/'])
 
-                    console.log('create data call: ', data)
+                    // console.log('create data call: ', data)
                 },
                 error: err => {
 

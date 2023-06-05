@@ -4,4 +4,17 @@
     <p>{{blog[0].createdAt | date}} </p>
     <p>{{blog[0].description}}</p>
     <p>{{blog[0].body}}</p>
+
+    <div class="comments">
+        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" >
+            <input 
+            type="text" 
+            name="comments"
+            [(ngModel)]="content" 
+            #priComment="ngModel"
+            required>
+            <button>Add</button>
+            <p *ngIf="priComment.invalid && addComment.submitted">Comment is required</p>
+        </form>
+    </div>
 </div>

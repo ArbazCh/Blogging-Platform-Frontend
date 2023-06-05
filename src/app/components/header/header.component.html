@@ -1,9 +1,12 @@
 <div class="header">
 
     <div class="left-button">
-        <a><button>Home</button></a>
+        <a>
+            <button routerLink="/">Home</button>
+        </a>
+
         <a *ngIf="isLoggedIn">
-            <button routerLink="/">My Blogs</button>
+            <button routerLink="/blogs">My Blogs</button>
         </a>
 
         <a  *ngIf="isLoggedIn">

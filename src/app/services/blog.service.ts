@@ -12,6 +12,10 @@ export class BlogService {
 
     constructor(private http: HttpClient) { }
 
+    getBlogs():Observable<any>{
+        return this.http.get(apiUrl+'blog/all')
+    }
+
     getAllBlogs(): Observable<any> {
         return this.http.get(apiUrl + 'blog')
     }
@@ -29,6 +33,11 @@ export class BlogService {
     deleteBlog(id: number): Observable<any> {
         
         return this.http.delete(apiUrl + `blog/${id}`)
+    }
+
+    addComment(id:number, content:string):Observable<any>{
+        // console.log("body: ", body)
+        return this.http.post(apiUrl+ `comment/${id}`, {content})
     }
 
 }

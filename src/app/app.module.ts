@@ -11,12 +11,14 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
-import { BlogsComponent } from './components/blogs/blogs.component';
+import { MYBlogsComponent } from './components/my-blogs/my-blogs.component';
 import { BlogPageComponent } from './components/blogPage/blog-page.component';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NotifyComponent } from './components/notify/notify.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { HomeComponent } from './components/home/home.component';
+import { BlogListComponent } from './components/blog-list/blog-list.component';
 // import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
@@ -25,11 +27,13 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    BlogsComponent,
+    MYBlogsComponent,
     BlogPageComponent,
     CreateBlogComponent,
     UserProfileComponent,
-    NotifyComponent
+    NotifyComponent,
+    HomeComponent,
+    BlogListComponent
   ],
   imports: [
     BrowserModule,

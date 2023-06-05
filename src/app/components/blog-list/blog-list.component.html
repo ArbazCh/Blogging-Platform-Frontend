@@ -8,8 +8,6 @@
     <h3>No blog found</h3>
 </div>
 
-<!-- All Blogs -->
-
 <div *ngFor="let blog of filteredBlogs.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
     class="blog-container">
     <div class="blog-title">
