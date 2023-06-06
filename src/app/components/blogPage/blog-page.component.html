@@ -15,7 +15,7 @@
             #priComment="ngModel"
             required>
             <button>Add</button>
-            <p *ngIf="priComment.invalid && addComment.submitted">Comment is required</p>
+            <p *ngIf="priComment.invalid && priComment.touched">Comment is required</p>
         </form>
     </div>
 

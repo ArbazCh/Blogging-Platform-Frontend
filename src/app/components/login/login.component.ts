@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
     submitted:boolean=false;
 
-    notificationMessage:string=''
+    notificationMessage:string='login'
     
     ngOnInit(): void {
 

@@ -3,6 +3,10 @@
     <input [(ngModel)]="searchTerm" type="text" placeholder="Search by Title" (input)="searchBlog()">
 </div>
 
+<!-- <div *ngIf="!blogs.length">
+    <h4>You don't have any blogs</h4>
+</div> -->
+
 <!-- If Result not Found -->
 <div class="no-result-found " *ngIf="noResultsFound">
     <h3>No blog found</h3>

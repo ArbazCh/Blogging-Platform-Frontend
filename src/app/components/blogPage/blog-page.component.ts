@@ -36,16 +36,25 @@ export class BlogPageComponent implements OnInit {
     ngOnInit(): void {
 
         this.isLoogedin= sessionStorage.getItem('isLoggedIn') === 'true'
-        // console.log("status: ",this.isLoogedin)
+        this.fetchBlog()
 
+    }
+
+    fetchBlog():void{
         this.blogService.getBlogBYId(this.id).subscribe({
 
             next: data => {
 
                 this.blog = data
+
                 this.comments=data[0].comments
 
-                console.log('blog/id call data: ', data)
+                // this.comments = data[0].comments.sort((a: { createdAt: Date }, b: { createdAt : Date}) => {
+
+                //   (new Date(a.createdAt).getDate())-(new Date(b.createdAt).getDate())
+
+                // });
+
             },
             error: err => console.log('blog/id err: ', err)
         })
@@ -57,9 +66,7 @@ export class BlogPageComponent implements OnInit {
 
             next: data => {
 
-                this.router.navigate(['/'])
-
-                // alert("Your blog has deleted successfully")
+                this.router.navigate(['/blogs'])
 
                 console.log("delete blog call: ", data)
             },
@@ -70,6 +77,9 @@ export class BlogPageComponent implements OnInit {
     onSubmit():void{
         this.blogService.addComment(this.id,this.content).subscribe({
             next:data=>{
+
+                this.content='';
+                this.fetchBlog();
                 console.log("comment call: ", data)
             },
             error:err=>console.log("err comment :", err)
