@@ -1,4 +1,4 @@
-<div class="header">
+<!-- <div class="header">
 
     <div class="left-button">
         <a>
@@ -26,7 +26,20 @@
         <a>
             <button routerLink="/user">My Account</button>
         </a>
-
     </div>
 
-</div>
+</div> -->
+<nav class="bg-white p-4 flex justify-between items-center">
+    <div>
+      <a  routerLink="/" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Home</a>
+    </div>
+    <div class="md:flex space-x-4">
+      <a routerLink="/blogs" *ngIf="isLoggedIn" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">My Blogs</a>
+      <a routerLink="/create" *ngIf="isLoggedIn" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Create</a>
+      <a routerLink="/login" *ngIf="!isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Login</a>
+      <a (click)="signOut()" *ngIf="isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white cursor-pointer">Logout</a>
+      <a routerLink="/user" *ngIf="isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">My Account</a>
+    </div>
+    
+  </nav>
+  

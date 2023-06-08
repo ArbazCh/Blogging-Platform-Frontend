@@ -17,7 +17,7 @@ export class BlogListComponent{
 
     searchTerm: string = '';
 
-    pageSize: number = 5;
+    pageSize: number = 9;
 
     currentPage: number = 1;
 
