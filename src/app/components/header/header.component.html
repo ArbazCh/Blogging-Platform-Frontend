@@ -29,17 +29,29 @@
     </div>
 
 </div> -->
-<nav class="bg-white p-4 flex justify-between items-center">
+<nav class="bg-white p-4 flex justify-between items-center m-0 md:m-6">
     <div>
-      <a  routerLink="/" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Home</a>
+      <a  routerLink="/"  class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800 cursor-pointer">Home</a>
     </div>
-    <div class="md:flex space-x-4">
-      <a routerLink="/blogs" *ngIf="isLoggedIn" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">My Blogs</a>
-      <a routerLink="/create" *ngIf="isLoggedIn" class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Create</a>
-      <a routerLink="/login" *ngIf="!isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">Login</a>
-      <a (click)="signOut()" *ngIf="isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white cursor-pointer">Logout</a>
-      <a routerLink="/user" *ngIf="isLoggedIn"  class="text-black font-semibold hover:bg-purple-700 hover:rounded-md hover: p-2 hover:text-white">My Account</a>
+    <div class="md:flex hidden space-x-4">
+      <a routerLink="/blogs" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">My Blogs</a>
+      <a routerLink="/create" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">Create</a>
+      <a routerLink="/login" *ngIf="!isLoggedIn"  class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">Login</a>
+      <a (click)="signOut()" *ngIf="isLoggedIn"  class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800 cursor-pointer">Logout</a>
+      <a routerLink="/user" *ngIf="isLoggedIn"  class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">My Account</a>
     </div>
+
+    <div class="md:hidden cursor-pointer  rounded-md">
+        <a class="text-3xl" (click)="toggleDropdown()">&#8801;</a>
+        <div class="absolute bg-white shadow-md rounded-md mt-2 py-2 w-48 right-0 z-10" [hidden]="!showDropdown">
+          <a routerLink="/blogs" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800" (click)="hideDropdown()">My Blogs</a>
+          <a routerLink="/create" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800" (click)="hideDropdown()">Create</a>
+          <a routerLink="/login" *ngIf="!isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800" (click)="hideDropdown()">Login</a>
+          <a (click)="signOut()" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800 cursor-pointer" (click)="hideDropdown()">Logout</a>
+          <a routerLink="/user" *ngIf="isLoggedIn" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800" (click)="hideDropdown()">My Account</a>
+        </div>
+      </div>
+
     
   </nav>
   

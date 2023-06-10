@@ -31,11 +31,11 @@ export class BlogPageComponent implements OnInit {
 
     id =Number( this.route.snapshot.paramMap.get('id'));
 
-    isLoogedin:boolean=false;
+    isLoggedin:boolean=false;
 
     ngOnInit(): void {
 
-        this.isLoogedin= sessionStorage.getItem('isLoggedIn') === 'true'
+        this.isLoggedin= sessionStorage.getItem('isLoggedIn') === 'true'
         this.fetchBlog()
 
     }

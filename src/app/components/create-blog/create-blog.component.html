@@ -1,4 +1,4 @@
-<form [formGroup]="blogForm" (ngSubmit)="handlePublish()" >
+<!-- <form [formGroup]="blogForm" (ngSubmit)="handlePublish()" >
 
     <div class="container">
         <h3>Create Your Blog</h3>
@@ -19,8 +19,33 @@
 
         <p *ngIf="isPublishFailed">Publication Failed: {{errorMessage}}</p>
     
-        <button>Publish</button>
+        <button  class="block px-4 py-2 text-black font-semibold hover:bg-purple-700 hover:text-white" >Publish</button>
     
     </div>
 
-</form>
+</form> -->
+
+<form [formGroup]="blogForm" (ngSubmit)="handlePublish()" class="w-3/4 m-10">
+    <h3 class="text-xl font-semibold mb-4">Create Your Blog</h3>
+  
+    <p *ngIf="blogForm.get('title')?.invalid && submitted" class="text-red-500 mb-2">Title is required</p>
+  
+    <input placeholder="Title" formControlName="title" class="border border-gray-300 px-4 py-2 rounded-md mb-4 w-full">
+  
+    <p *ngIf="blogForm.get('description')?.invalid && submitted" class="text-red-500 mb-2">Description is required</p>
+  
+    <input placeholder="Description" formControlName="description" class="border border-gray-300 px-4 py-2 rounded-md mb-4 w-full">
+  
+    <p *ngIf="blogForm.get('body')?.invalid && submitted" class="text-red-500 mb-2">Body is required</p>
+  
+    <div class="blog-body">
+      <input placeholder="Body" formControlName="body" class="border border-gray-300 px-4 py-2 rounded-md mb-4 w-full">
+    </div>
+  
+    <p *ngIf="isPublishFailed" class="text-red-500 mb-2">Publication Failed: {{errorMessage}}</p>
+  
+    <button type="submit" class="block bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">Publish</button>
+  </form>
+  
+  
+  

@@ -17,7 +17,10 @@ import { AuthService } from "src/app/services/auth.service";
 
 export class HeaderComponent implements OnInit {
 
+
     constructor(private router: Router, private authService:AuthService) { }
+
+    showDropdown:boolean=false;
     private authListenerSubs!: Subscription;  
     isLoggedIn: boolean=false;
 
@@ -37,6 +40,13 @@ export class HeaderComponent implements OnInit {
         this.authListenerSubs.unsubscribe()
       }
 
+      toggleDropdown():void{
+        this.showDropdown=!this.showDropdown;
+      }
+
+      hideDropdown():void{
+        this.showDropdown = false;
+      }
 
     signOut(): void {
 

@@ -1,12 +1,12 @@
-<div class="blog-container">
-    <button *ngIf="isLoogedin" (click)="deleteBlog()">Delete</button>
+<!-- <div class="blog-container">
+    <button *ngIf="isLoggedin" (click)="deleteBlog()">Delete</button>
     <h2>{{blog[0].title}}</h2>
     <p>{{blog[0].createdAt | date}} </p>
     <p>{{blog[0].description}}</p>
     <p>{{blog[0].body}}</p>
 
     <div class="comment-form">
-        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" *ngIf="isLoogedin">
+        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" *ngIf="isLoggedin">
             <input 
             placeholder="Add Comment"
             type="text" 
@@ -22,7 +22,7 @@
     <h3>
         Comments
     </h3>
-    <p *ngIf="!isLoogedin">Login to add comments</p>
+    <p *ngIf="!isLoggedin">Login to add comments</p>
     <div class="comments-container" *ngFor="let comment of comments">
         <div class="single-comment">
             <h5>{{comment.content}}</h5>
@@ -34,5 +34,56 @@
             </div>
         </div>
     </div>
+</div> -->
 
-</div>
+
+<div class="container mx-auto px-4">
+    <div class="my-4">
+      <button *ngIf="isLoggedin" (click)="deleteBlog()" class="bg-slate-400 text-white font-semibold py-2 px-4 rounded-md mb-4 hover:bg-slate-500">Delete</button>
+      <h2 class="text-2xl font-bold">{{blog[0].title}}</h2>
+      <p class="text-gray-500">{{blog[0].createdAt | date}}</p>
+      <p>{{blog[0].description}}</p>
+      <p>{{blog[0].body}}</p>
+  
+      <div class="mt-32">
+        <form #addComment="ngForm" (ngSubmit)="addComment.valid && onSubmit()" *ngIf="isLoggedin">
+          <input 
+            placeholder="Add Comment"
+            type="text" 
+            name="comments"
+            [(ngModel)]="content" 
+            #priComment="ngModel"
+            required
+            class="border border-gray-300 px-4 py-2 w-3/4 rounded-md"
+          >
+          <button class="bg-purple-600 text-white font-semibold py-2 px-4 rounded-md mt-2 block hover:bg-purple-700">Add</button>
+          <p *ngIf="priComment.invalid && priComment.touched" class="text-red-500">Comment is required</p>
+        </form>
+      </div>
+  
+      <h3 class="text-xl font-semibold mt-8">Comments</h3>
+      <p *ngIf="!isLoggedin" class="mb-4">Login to add comments</p>
+  
+      <div class="grid grid-cols-1 gap-4">
+        <div *ngFor="let comment of comments" class="bg-white p-4 rounded-md shadow-md">
+          <div class="flex items-start justify-between">
+            <h5 class="font-semibold">{{comment.content}}</h5>
+            <div class="text-gray-500">
+              <p>{{comment.createdAt | date}}</p>
+            </div>
+          </div>
+          <div class="flex items-center mt-2">
+            <div class="flex-shrink-0">
+              <!-- <img src="{{comment.userAvatar}}" alt="User Avatar" class="w-8 h-8 rounded-full"> -->
+            </div>
+            <div class="ml-2">
+              <p class="text-sm font-medium">{{comment.userName}}</p>
+              <!-- <p class="text-xs text-gray-500">{{comment.userRole}}</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

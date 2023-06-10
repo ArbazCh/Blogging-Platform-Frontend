@@ -1,5 +1,5 @@
 
-<form [formGroup]="regForm" (ngSubmit)="handleSubmit() ">  
+<!-- <form [formGroup]="regForm" (ngSubmit)="handleSubmit() ">  
     <div class="container">
 
         <h3>Register Yourself</h3>
@@ -22,18 +22,49 @@
 
         <input placeholder="confirm password" formControlName="confirmPassword">
 
-        <p *ngIf="regForm.get('confirmPassword')?.invalid && submitted">Confirm password is required</p>
+        <p *ngIf="regForm.get('confirmPassword')?.invalid && submitted">Confirm password is required</p> -->
 
         <!-- <p *ngIf="register.value['password']!==register.value['confirmPassword'] && register.submitted"> Password and Confirm Password should same</p> -->
 
-        <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
+        <!-- <p *ngIf="isRegFailed">Register Failed: {{errMessage}}</p>
 
         <button type="submit">Submit</button>
 
         <p>Already have an account, Login <a routerLink="/login">here</a></p>
     </div>
-</form>
+</form> -->
 
+<form [formGroup]="regForm" (ngSubmit)="handleSubmit()" class="flex justify-center items-center min-h-screen -mt-20">
+    <div class="w-full max-w-sm">
+      <h3 class="text-xl font-semibold mb-4">Register Yourself</h3>
+  
+      <input placeholder="Name" formControlName="name" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="regForm.get('name')?.invalid && submitted" class="text-red-500">Name is required</p>
+  
+      <input placeholder="Email" formControlName="email" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="regForm.get('email')?.invalid && submitted" class="text-red-500">
+        <span *ngIf="regForm.get('email')?.hasError('required')">Email is required.</span>
+        <span *ngIf="regForm.get('email')?.hasError('pattern')">Email is not in a valid format.</span>
+      </p>
+  
+      <input type="password" placeholder="Password" formControlName="password" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="regForm.get('password')?.invalid && submitted" class="text-red-500">Password is required</p>
+  
+      <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="regForm.get('confirmPassword')?.invalid && submitted" class="text-red-500">Confirm password is required</p>
+  
+      <p *ngIf="isRegFailed" class="text-red-500">Register Failed: {{errMessage}}</p>
+  
+      <button type="submit" class="bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">Submit</button>
+  
+      <p>Already have an account? <a routerLink="/login" class="text-purple-700 font-semibold">Login here</a></p>
+    </div>
+  </form>
+  
 
 
 

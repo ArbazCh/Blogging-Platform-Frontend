@@ -1,22 +1,22 @@
 <div class="">  
-    <div class="border-b-neutral-950 w-full flex justify-center"> 
+    <div class="border-b-neutral-950 w-full flex justify-center mt-8"> 
         <!-- Search Input -->
         <input
             [(ngModel)]="searchTerm" 
             (input)="searchBlog()" 
             type="text" 
             placeholder="Search" 
-            class=" w-3/4 px-4 py-2 border rounded-full focus:outline-none focus:ring focus:border-blue-300">
+            class=" w-3/4 px-4 py-2 border rounded-xl h-16 focus:outline-none focus:border-black">
     </div>
     <div  *ngIf="noResultsFound" class="rounded-lg border border-gray-300 p-4 flex justify-center m-5">
         <h4 class="font-bold text-lg">You don't have any blogs</h4>
       </div>  
       <!-- Card -->
-    <div class="grid grid-cols-3 gap-6 m-12">
+    <div class="grid md:grid-cols-3 grid-cols-1  gap-6 m-12">
         <div *ngFor="let blog of filteredBlogs.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
              class="rounded-lg border border-gray-300 p-4 cursor-pointer">
             <div routerLink="/blog/{{blog.id}}">
-                <img src="https://images.pexels.com/photos/16945054/pexels-photo-16945054/free-photo-of-light-black-and-white-city-man.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg">
+                <img src="https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=600 " alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg">
                 <h2 class="font-bold text-lg mt-4">{{blog.title}}</h2>
                 <p class="mt-2 leading-snug">{{blog.description}}</p>
                 <p class="text-sm text-gray-600 mt-2">Published: {{blog.createdAt | date}}</p>
@@ -29,7 +29,10 @@
     </div>
 
 
-
+<!-- 
+    https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=600 
+https://images.pexels.com/photos/16945054/pexels-photo-16945054/free-photo-of-light-black-and-white-city-man.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load
+-->
 
 
 

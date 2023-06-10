@@ -55,7 +55,7 @@
 
 <!-- <pm-notify [notifyMessage]="notificationMessage" *ngIf="notificationMessage"></pm-notify> -->
 
-
+<!-- 
 <form [formGroup]="form" (ngSubmit)=" handleLogin()">
     <div class="container">
         <h3>Login</h3>
@@ -88,4 +88,32 @@
         <p>Not have an account, register <a routerLink="/register">here</a></p>
         
     </div>
-</form>
+</form> -->
+
+
+<form [formGroup]="form" (ngSubmit)="handleLogin()" class="flex justify-center items-center min-h-screen -mt-20">
+    <div class="w-full max-w-sm">
+      <h3 class="text-xl font-semibold mb-4">Login</h3>
+  
+      <input formControlName="email" placeholder="Email" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="form.get('email')?.invalid && submitted" class="text-red-500">
+        <span *ngIf="form.get('email')?.hasError('required')">Email is required.</span>
+        <span *ngIf="form.get('email')?.hasError('pattern')">Email is not in a valid format.</span>
+      </p>
+  
+      <input type="password" formControlName="password" placeholder="Password" class="border border-gray-300 px-4 py-2 mb-4 w-full rounded-md">
+  
+      <p *ngIf="form.get('password')?.hasError('required') && submitted" class="text-red-500">Password is required</p>
+  
+      <p *ngIf="isLoggedinFailed && submitted" class="text-red-500">Login Failed: {{errorMessage}}</p>
+  
+      <button type="submit" class="bg-purple-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-800">Submit</button>
+  
+      <p>Don't have an account? <a routerLink="/register" class="text-purple-700 font-semibold">Register here</a></p>
+    </div>
+  </form>
+  
+  
+
+  
